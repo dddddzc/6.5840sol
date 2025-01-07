@@ -62,7 +62,7 @@ func (c *Coordinator) GetTask(args *MessageSend, reply *MessageReply) error {
 				reply.NReduce = c.NReduce // 用于worker在shuffle阶段的划分
 				c.MapTasks[i].Status = Assigned
 				c.MapTasks[i].TimeStamp = time.Now()
-				fmt.Printf("分配Map任务:MapTaskID:%d-TaskFile:%s\n", reply.TaskID, reply.TaskFile)
+				fmt.Printf("分配Map任务:TaskID:%d-TaskFile:%s\n", reply.TaskID, reply.TaskFile)
 				return nil
 			} else if MapTaskInfo.Status == Completed {
 				MapTaskCompleted++
@@ -92,7 +92,7 @@ func (c *Coordinator) GetTask(args *MessageSend, reply *MessageReply) error {
 				reply.NReduce = c.NReduce
 				c.ReduceTasks[i].Status = Assigned
 				c.ReduceTasks[i].TimeStamp = time.Now()
-				fmt.Printf("分配Reduce任务:ReduceTaskID:%d\n", reply.TaskID)
+				fmt.Printf("分配Reduce任务:TaskID:%d\n", reply.TaskID)
 				return nil
 			} else if ReduceTaskInfo.Status == Completed {
 				ReduceTaskCompleted++
