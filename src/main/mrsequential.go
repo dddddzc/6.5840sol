@@ -6,18 +6,22 @@ package main
 // go run mrsequential.go wc.so pg*.txt
 //
 
-import "fmt"
-import "6.5840/mr"
-import "plugin"
-import "os"
-import "log"
-import "io/ioutil"
-import "sort"
+import (
+	"fmt"
+	"io"
+	"log"
+	"os"
+	"plugin"
+	"sort"
+
+	"6.5840/mr"
+)
 
 // for sorting by key.
 type ByKey []mr.KeyValue
 
 // for sorting by key.
+// 实现了sort.Interface接口的三个方法
 func (a ByKey) Len() int           { return len(a) }
 func (a ByKey) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a ByKey) Less(i, j int) bool { return a[i].Key < a[j].Key }
@@ -36,17 +40,20 @@ func main() {
 	// accumulate the intermediate Map output.
 	//
 	intermediate := []mr.KeyValue{}
+	// 遍历输入文件
 	for _, filename := range os.Args[2:] {
 		file, err := os.Open(filename)
 		if err != nil {
 			log.Fatalf("cannot open %v", filename)
 		}
-		content, err := ioutil.ReadAll(file)
+		content, err := io.ReadAll(file)
 		if err != nil {
 			log.Fatalf("cannot read %v", filename)
 		}
 		file.Close()
+		// 调用Map函数
 		kva := mapf(filename, string(content))
+		// 将Map函数的输出结果保存到intermediate中
 		intermediate = append(intermediate, kva...)
 	}
 
@@ -56,6 +63,7 @@ func main() {
 	// rather than being partitioned into NxM buckets.
 	//
 
+	// 对intermediate进行排序
 	sort.Sort(ByKey(intermediate))
 
 	oname := "mr-out-0"
@@ -67,6 +75,7 @@ func main() {
 	//
 	i := 0
 	for i < len(intermediate) {
+		// j是第一个不等于intermediate[i].Key的索引
 		j := i + 1
 		for j < len(intermediate) && intermediate[j].Key == intermediate[i].Key {
 			j++

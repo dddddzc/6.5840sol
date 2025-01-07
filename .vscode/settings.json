@@ -1,0 +1,5 @@
+{
+    "workbench.editor.wrapTabs": true,
+    "editor.rename.enablePreview": false,
+    "editor.formatOnSave": true
+}
