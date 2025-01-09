@@ -10,7 +10,6 @@ type PutAppendArgs struct {
 	Op        string // operation type: "Put", "Append"
 	ClientID  int64
 	RequestID int64
-	Success   bool // if request OK, inform server to delete ClientState
 }
 
 type PutAppendReply struct {

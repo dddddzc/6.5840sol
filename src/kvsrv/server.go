@@ -90,11 +90,6 @@ func (kv *KVServer) Append(args *PutAppendArgs, reply *PutAppendReply) {
 	// Your code here.
 	kv.mu.Lock()
 	defer kv.mu.Unlock()
-	// 检查是否是通知删除的请求
-	if args.Success {
-		delete(kv.clients, args.ClientID)
-		return
-	}
 	DPrintf("Append request: %v", args)
 
 	// 如果是重复请求,直接返回之前的回复

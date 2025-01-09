@@ -52,15 +52,18 @@ func (ck *Clerk) Get(key string) string {
 	for {
 		ok := ck.server.Call("KVServer.Get", &args, &reply)
 		if ok {
-			// 成功后再将ck.requestID加1
-			// 并且告知server,可以删除ClientState
-			ck.requestID++
+			// 成功后告知server可以删除ClientState
 			deleteArgs := GetArgs{
 				ClientID: ck.clientID,
 				Success:  true,
 			}
 			deleteReply := GetReply{}
-			ck.server.Call("KVServer.Get", &deleteArgs, &deleteReply)
+			deleteOK := false
+			for !deleteOK {
+				deleteOK = ck.server.Call("KVServer.Get", &deleteArgs, &deleteReply)
+			}
+			// 删除成功后自增requestID并返回
+			ck.requestID++
 			return reply.Value
 		}
 	}
@@ -88,14 +91,18 @@ func (ck *Clerk) PutAppend(key string, value string, op string) string {
 	for {
 		ok := ck.server.Call("KVServer."+op, &args, &reply)
 		if ok {
-			ck.requestID++
 			// 统一用Get方法发送删除请求,反正不影响
 			deleteArgs := GetArgs{
 				ClientID: ck.clientID,
 				Success:  true,
 			}
 			deleteReply := GetReply{}
-			ck.server.Call("KVServer.Get", &deleteArgs, &deleteReply)
+			deleteOK := false
+			for !deleteOK {
+				deleteOK = ck.server.Call("KVServer.Get", &deleteArgs, &deleteReply)
+			}
+			// 删除成功后自增requestID并返回
+			ck.requestID++
 			return reply.Value
 		}
 	}
