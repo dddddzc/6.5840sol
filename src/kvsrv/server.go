@@ -33,6 +33,7 @@ func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 	defer kv.mu.Unlock()
 	// 检查是否是通知删除的请求
 	if args.Success {
+		DPrintf("Delete request: %v", args)
 		delete(kv.clients, args.ClientID)
 		return
 	}
@@ -64,11 +65,6 @@ func (kv *KVServer) Put(args *PutAppendArgs, reply *PutAppendReply) {
 	// Your code here.
 	kv.mu.Lock()
 	defer kv.mu.Unlock()
-	// 检查是否是通知删除的请求
-	if args.Success {
-		delete(kv.clients, args.ClientID)
-		return
-	}
 	DPrintf("Put request: %v", args)
 
 	// 如果是重复请求,直接返回之前的回复
