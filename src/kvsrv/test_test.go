@@ -15,6 +15,8 @@ import (
 	"sync/atomic"
 	"testing"
 	"time"
+
+	_ "net/http/pprof"
 )
 
 const linearizabilityCheckTimeout = 1 * time.Second
