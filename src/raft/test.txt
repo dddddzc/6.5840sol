@@ -1,0 +1,16 @@
+Test (3A): initial election ...
+2025/01/14 15:20:21 Term 1 : node 0 broadcastRequestVote
+2025/01/14 15:20:21 Term 1 : node 2 received RequestVote from node 0
+2025/01/14 15:20:21 Term 1 : node 0 received vote from node 2
+2025/01/14 15:20:21 Term 1 : node 0 become leader
+2025/01/14 15:20:21 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:20:21 Term 1 : node 1 received RequestVote from node 0
+panic: runtime error: index out of range [-1]
+
+goroutine 19 [running]:
+6.5840/raft.(*Raft).broadcastHeartbeat.func1(0x2)
+	/home/6.5840sol/src/raft/raft.go:449 +0x210
+created by 6.5840/raft.(*Raft).broadcastHeartbeat in goroutine 15
+	/home/6.5840sol/src/raft/raft.go:445 +0x145
+exit status 2
+FAIL	6.5840/raft	0.220s
