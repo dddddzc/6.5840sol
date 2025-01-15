@@ -1,16 +1,484 @@
 Test (3A): initial election ...
-2025/01/14 15:20:21 Term 1 : node 0 broadcastRequestVote
-2025/01/14 15:20:21 Term 1 : node 2 received RequestVote from node 0
-2025/01/14 15:20:21 Term 1 : node 0 received vote from node 2
-2025/01/14 15:20:21 Term 1 : node 0 become leader
-2025/01/14 15:20:21 Term 1 : node 0 broadcastHeartbeat
-2025/01/14 15:20:21 Term 1 : node 1 received RequestVote from node 0
-panic: runtime error: index out of range [-1]
-
-goroutine 19 [running]:
-6.5840/raft.(*Raft).broadcastHeartbeat.func1(0x2)
-	/home/6.5840sol/src/raft/raft.go:449 +0x210
-created by 6.5840/raft.(*Raft).broadcastHeartbeat in goroutine 15
-	/home/6.5840sol/src/raft/raft.go:445 +0x145
-exit status 2
-FAIL	6.5840/raft	0.220s
+2025/01/14 15:52:20 Term 1 : node 0 broadcastRequestVote
+2025/01/14 15:52:20 Term 1 : node 2 received RequestVote from node 0
+2025/01/14 15:52:20 Term 1 : node 2 back to follower
+2025/01/14 15:52:20 Term 1 : node 1 received RequestVote from node 0
+2025/01/14 15:52:20 Term 1 : node 1 back to follower
+2025/01/14 15:52:20 Term 1 : node 0 received vote from node 2
+2025/01/14 15:52:20 Term 1 : node 0 become leader
+2025/01/14 15:52:20 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:20 Term 1 : node 0 received vote from node 1
+2025/01/14 15:52:20 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:20 Term 1 : node 2 back to follower
+2025/01/14 15:52:20 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:20 Term 1 : node 1 back to follower
+2025/01/14 15:52:20 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:20 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:20 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:20 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:20 Term 1 : node 2 back to follower
+2025/01/14 15:52:20 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:20 Term 1 : node 1 back to follower
+2025/01/14 15:52:20 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:20 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:21 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:21 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:21 Term 1 : node 1 back to follower
+2025/01/14 15:52:21 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:21 Term 1 : node 2 back to follower
+2025/01/14 15:52:21 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:21 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:21 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:21 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:21 Term 1 : node 2 back to follower
+2025/01/14 15:52:21 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:21 Term 1 : node 1 back to follower
+2025/01/14 15:52:21 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:21 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:21 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:21 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:21 Term 1 : node 2 back to follower
+2025/01/14 15:52:21 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:21 Term 1 : node 1 back to follower
+2025/01/14 15:52:21 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:21 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:22 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:22 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:22 Term 1 : node 2 back to follower
+2025/01/14 15:52:22 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:22 Term 1 : node 1 back to follower
+2025/01/14 15:52:22 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:22 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:22 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:22 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:22 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:22 Term 1 : node 2 back to follower
+2025/01/14 15:52:22 Term 1 : node 1 back to follower
+2025/01/14 15:52:22 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:22 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:22 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:22 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:22 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:22 Term 1 : node 2 back to follower
+2025/01/14 15:52:22 Term 1 : node 1 back to follower
+2025/01/14 15:52:22 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:22 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:23 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:23 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:23 Term 1 : node 2 back to follower
+2025/01/14 15:52:23 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:23 Term 1 : node 1 back to follower
+2025/01/14 15:52:23 Term 1 : node 0 received match from node 2
+2025/01/14 15:52:23 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:23 Term 1 : node 0 broadcastHeartbeat
+2025/01/14 15:52:23 Term 1 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:23 Term 1 : node 1 back to follower
+2025/01/14 15:52:23 Term 1 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:23 Term 1 : node 2 back to follower
+2025/01/14 15:52:23 Term 1 : node 0 received match from node 1
+2025/01/14 15:52:23 Term 1 : node 0 received match from node 2
+  ... Passed --   3.1  3   22    5710    0
+Test (3A): election after network failure ...
+2025/01/14 15:52:23 Term 1 : node 1 broadcastRequestVote
+2025/01/14 15:52:23 Term 1 : node 0 received RequestVote from node 1
+2025/01/14 15:52:23 Term 1 : node 0 back to follower
+2025/01/14 15:52:23 Term 1 : node 2 received RequestVote from node 1
+2025/01/14 15:52:23 Term 1 : node 2 back to follower
+2025/01/14 15:52:23 Term 1 : node 1 received vote from node 0
+2025/01/14 15:52:23 Term 1 : node 1 become leader
+2025/01/14 15:52:23 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:23 Term 1 : node 1 received vote from node 2
+2025/01/14 15:52:23 Term 1 : node 0 received AppendEntries from node 1
+2025/01/14 15:52:23 Term 1 : node 0 back to follower
+2025/01/14 15:52:23 Term 1 : node 2 received AppendEntries from node 1
+2025/01/14 15:52:23 Term 1 : node 2 back to follower
+2025/01/14 15:52:23 Term 1 : node 1 received match from node 0
+2025/01/14 15:52:23 Term 1 : node 1 received match from node 2
+2025/01/14 15:52:23 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:23 Term 1 : node 0 received AppendEntries from node 1
+2025/01/14 15:52:23 Term 1 : node 2 received AppendEntries from node 1
+2025/01/14 15:52:23 Term 1 : node 0 back to follower
+2025/01/14 15:52:23 Term 1 : node 2 back to follower
+2025/01/14 15:52:23 Term 1 : node 1 received match from node 2
+2025/01/14 15:52:23 Term 1 : node 1 received match from node 0
+2025/01/14 15:52:24 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:24 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:24 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:24 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:25 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:25 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:25 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:26 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:26 Term 2 : node 0 broadcastRequestVote
+2025/01/14 15:52:26 Term 2 : node 2 received RequestVote from node 0
+2025/01/14 15:52:26 Term 2 : node 2 back to follower
+2025/01/14 15:52:26 Term 2 : node 0 received vote from node 2
+2025/01/14 15:52:26 Term 2 : node 0 become leader
+2025/01/14 15:52:26 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:26 Term 2 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:26 Term 2 : node 2 back to follower
+2025/01/14 15:52:26 Term 2 : node 0 received match from node 2
+2025/01/14 15:52:26 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:26 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:26 Term 2 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:26 Term 2 : node 2 back to follower
+2025/01/14 15:52:26 Term 2 : node 0 received match from node 2
+2025/01/14 15:52:26 Term 1 : node 1 broadcastHeartbeat
+2025/01/14 15:52:26 Term 1 : node 2 received AppendEntries from node 1
+2025/01/14 15:52:26 Term 2 : node 1 back to follower
+2025/01/14 15:52:27 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:27 Term 1 : node 0 received AppendEntries from node 1
+2025/01/14 15:52:27 Term 2 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:27 Term 2 : node 2 back to follower
+2025/01/14 15:52:27 Term 2 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:27 Term 2 : node 1 back to follower
+2025/01/14 15:52:27 Term 2 : node 0 received match from node 2
+2025/01/14 15:52:27 Term 2 : node 0 received match from node 1
+2025/01/14 15:52:27 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:27 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:27 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:28 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:28 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:28 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:29 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:29 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:29 Term 3 : node 2 broadcastRequestVote
+2025/01/14 15:52:29 Term 3 : node 1 received RequestVote from node 2
+2025/01/14 15:52:29 Term 3 : node 1 back to follower
+2025/01/14 15:52:29 Term 3 : node 2 received vote from node 1
+2025/01/14 15:52:29 Term 3 : node 2 become leader
+2025/01/14 15:52:29 Term 3 : node 2 broadcastHeartbeat
+2025/01/14 15:52:29 Term 3 : node 1 received AppendEntries from node 2
+2025/01/14 15:52:29 Term 3 : node 1 back to follower
+2025/01/14 15:52:29 Term 3 : node 2 received match from node 1
+2025/01/14 15:52:29 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:30 Term 3 : node 2 broadcastHeartbeat
+2025/01/14 15:52:30 Term 3 : node 1 received AppendEntries from node 2
+2025/01/14 15:52:30 Term 3 : node 1 back to follower
+2025/01/14 15:52:30 Term 3 : node 2 received match from node 1
+2025/01/14 15:52:30 Term 2 : node 0 broadcastHeartbeat
+2025/01/14 15:52:30 Term 3 : node 0 received AppendEntries from node 2
+2025/01/14 15:52:30 Term 2 : node 0 back to follower
+2025/01/14 15:52:30 Term 2 : node 2 received AppendEntries from node 0
+2025/01/14 15:52:30 Term 2 : node 1 received AppendEntries from node 0
+2025/01/14 15:52:30 Term 3 : node 0 back to follower
+2025/01/14 15:52:30 Term 3 : node 2 received match from node 0
+2025/01/14 15:52:30 Term 3 : node 2 broadcastHeartbeat
+2025/01/14 15:52:30 Term 3 : node 1 received AppendEntries from node 2
+2025/01/14 15:52:30 Term 3 : node 1 back to follower
+2025/01/14 15:52:30 Term 3 : node 0 received AppendEntries from node 2
+2025/01/14 15:52:30 Term 3 : node 0 back to follower
+2025/01/14 15:52:30 Term 3 : node 2 received match from node 1
+2025/01/14 15:52:30 Term 3 : node 2 received match from node 0
+2025/01/14 15:52:30 Term 3 : node 2 broadcastHeartbeat
+  ... Passed --   7.1  3   62   13572    0
+Test (3A): multiple elections ...
+2025/01/14 15:52:30 Term 1 : node 3 broadcastRequestVote
+2025/01/14 15:52:30 Term 1 : node 5 broadcastRequestVote
+2025/01/14 15:52:30 Term 1 : node 0 received RequestVote from node 3
+2025/01/14 15:52:30 Term 1 : node 0 back to follower
+2025/01/14 15:52:30 Term 1 : node 1 received RequestVote from node 3
+2025/01/14 15:52:30 Term 1 : node 1 back to follower
+2025/01/14 15:52:30 Term 1 : node 5 received RequestVote from node 3
+2025/01/14 15:52:30 Term 1 : node 6 received RequestVote from node 3
+2025/01/14 15:52:30 Term 1 : node 6 back to follower
+2025/01/14 15:52:30 Term 1 : node 3 received vote from node 0
+2025/01/14 15:52:30 Term 1 : node 2 received RequestVote from node 3
+2025/01/14 15:52:30 Term 1 : node 4 received RequestVote from node 3
+2025/01/14 15:52:30 Term 1 : node 0 received RequestVote from node 5
+2025/01/14 15:52:30 Term 1 : node 3 received vote from node 6
+2025/01/14 15:52:30 Term 1 : node 3 received vote from node 1
+2025/01/14 15:52:30 Term 1 : node 3 become leader
+2025/01/14 15:52:30 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:30 Term 1 : node 4 back to follower
+2025/01/14 15:52:30 Term 1 : node 2 back to follower
+2025/01/14 15:52:30 Term 1 : node 4 received RequestVote from node 5
+2025/01/14 15:52:30 Term 1 : node 3 received RequestVote from node 5
+2025/01/14 15:52:30 Term 1 : node 6 received RequestVote from node 5
+2025/01/14 15:52:30 Term 1 : node 3 received vote from node 4
+2025/01/14 15:52:30 Term 1 : node 1 received RequestVote from node 5
+2025/01/14 15:52:30 Term 1 : node 3 received vote from node 2
+2025/01/14 15:52:30 Term 1 : node 2 received RequestVote from node 5
+2025/01/14 15:52:30 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 1 back to follower
+2025/01/14 15:52:30 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 6 back to follower
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:30 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:30 Term 1 : node 2 back to follower
+2025/01/14 15:52:30 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 0 back to follower
+2025/01/14 15:52:30 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 5 back to follower
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:30 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 4 back to follower
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:30 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:30 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 6 back to follower
+2025/01/14 15:52:30 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 4 back to follower
+2025/01/14 15:52:30 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 0 back to follower
+2025/01/14 15:52:30 Term 1 : node 1 back to follower
+2025/01/14 15:52:30 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 2 back to follower
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:30 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:30 Term 1 : node 5 back to follower
+2025/01/14 15:52:30 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:31 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:31 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 6 back to follower
+2025/01/14 15:52:31 Term 1 : node 4 back to follower
+2025/01/14 15:52:31 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 0 back to follower
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:31 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:31 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 2 back to follower
+2025/01/14 15:52:31 Term 1 : node 5 back to follower
+2025/01/14 15:52:31 Term 1 : node 6 back to follower
+2025/01/14 15:52:31 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:31 Term 1 : node 1 back to follower
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:31 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:31 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 1 back to follower
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:31 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 6 back to follower
+2025/01/14 15:52:31 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:31 Term 1 : node 5 back to follower
+2025/01/14 15:52:31 Term 1 : node 2 back to follower
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:31 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:32 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:32 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 5 back to follower
+2025/01/14 15:52:32 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 6 back to follower
+2025/01/14 15:52:32 Term 1 : node 2 back to follower
+2025/01/14 15:52:32 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 1 back to follower
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:32 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:32 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 4 back to follower
+2025/01/14 15:52:32 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 2 back to follower
+2025/01/14 15:52:32 Term 1 : node 5 back to follower
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:32 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:32 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 6 back to follower
+2025/01/14 15:52:32 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 1 back to follower
+2025/01/14 15:52:32 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 2 back to follower
+2025/01/14 15:52:32 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:32 Term 1 : node 4 back to follower
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:32 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:33 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:33 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 4 back to follower
+2025/01/14 15:52:33 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 0 back to follower
+2025/01/14 15:52:33 Term 1 : node 1 back to follower
+2025/01/14 15:52:33 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 6 back to follower
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:33 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:33 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 0 back to follower
+2025/01/14 15:52:33 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 1 back to follower
+2025/01/14 15:52:33 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 6 back to follower
+2025/01/14 15:52:33 Term 1 : node 4 back to follower
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:33 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:33 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 0 back to follower
+2025/01/14 15:52:33 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 1 back to follower
+2025/01/14 15:52:33 Term 1 : node 4 back to follower
+2025/01/14 15:52:33 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:33 Term 1 : node 6 back to follower
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 1
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:33 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:34 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:34 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 0 back to follower
+2025/01/14 15:52:34 Term 1 : node 6 back to follower
+2025/01/14 15:52:34 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 5 back to follower
+2025/01/14 15:52:34 Term 1 : node 2 back to follower
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:34 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:34 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 5 back to follower
+2025/01/14 15:52:34 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 6 back to follower
+2025/01/14 15:52:34 Term 1 : node 2 back to follower
+2025/01/14 15:52:34 Term 1 : node 0 back to follower
+2025/01/14 15:52:34 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 1 back to follower
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:34 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:34 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 0 back to follower
+2025/01/14 15:52:34 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 6 back to follower
+2025/01/14 15:52:34 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:34 Term 1 : node 2 back to follower
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 0
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:34 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:35 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:35 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:35 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:35 Term 1 : node 5 back to follower
+2025/01/14 15:52:35 Term 1 : node 6 back to follower
+2025/01/14 15:52:35 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:35 Term 1 : node 4 back to follower
+2025/01/14 15:52:35 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:35 Term 1 : node 2 back to follower
+2025/01/14 15:52:35 Term 1 : node 3 received match from node 5
+2025/01/14 15:52:35 Term 1 : node 3 received match from node 6
+2025/01/14 15:52:35 Term 1 : node 3 received match from node 4
+2025/01/14 15:52:35 Term 1 : node 3 received match from node 2
+2025/01/14 15:52:35 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:35 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:36 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:36 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:36 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:36 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:37 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:37 Term 2 : node 1 broadcastRequestVote
+2025/01/14 15:52:37 Term 2 : node 5 received RequestVote from node 1
+2025/01/14 15:52:37 Term 2 : node 2 received RequestVote from node 1
+2025/01/14 15:52:37 Term 2 : node 5 back to follower
+2025/01/14 15:52:37 Term 2 : node 6 received RequestVote from node 1
+2025/01/14 15:52:37 Term 2 : node 2 back to follower
+2025/01/14 15:52:37 Term 2 : node 6 back to follower
+2025/01/14 15:52:37 Term 2 : node 0 received RequestVote from node 1
+2025/01/14 15:52:37 Term 2 : node 0 back to follower
+2025/01/14 15:52:37 Term 2 : node 1 received vote from node 5
+2025/01/14 15:52:37 Term 2 : node 1 received vote from node 2
+2025/01/14 15:52:37 Term 2 : node 1 received vote from node 0
+2025/01/14 15:52:37 Term 2 : node 1 become leader
+2025/01/14 15:52:37 Term 2 : node 1 broadcastHeartbeat
+2025/01/14 15:52:37 Term 2 : node 1 received vote from node 6
+2025/01/14 15:52:37 Term 2 : node 6 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 5 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 6 back to follower
+2025/01/14 15:52:37 Term 2 : node 5 back to follower
+2025/01/14 15:52:37 Term 2 : node 0 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 2 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 2 back to follower
+2025/01/14 15:52:37 Term 2 : node 0 back to follower
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 5
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 6
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 2
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 0
+2025/01/14 15:52:37 Term 1 : node 3 broadcastHeartbeat
+2025/01/14 15:52:37 Term 1 : node 6 received AppendEntries from node 3
+2025/01/14 15:52:37 Term 2 : node 3 back to follower
+2025/01/14 15:52:37 Term 1 : node 0 received AppendEntries from node 3
+2025/01/14 15:52:37 Term 1 : node 5 received AppendEntries from node 3
+2025/01/14 15:52:37 Term 1 : node 4 received AppendEntries from node 3
+2025/01/14 15:52:37 Term 1 : node 2 received AppendEntries from node 3
+2025/01/14 15:52:37 Term 1 : node 4 back to follower
+2025/01/14 15:52:37 Term 2 : node 3 received match from node 4
+2025/01/14 15:52:37 Term 2 : node 1 broadcastHeartbeat
+2025/01/14 15:52:37 Term 1 : node 1 received AppendEntries from node 3
+2025/01/14 15:52:37 Term 2 : node 4 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 1 : node 4 back to follower
+2025/01/14 15:52:37 Term 2 : node 2 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 0 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 0 back to follower
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 4
+2025/01/14 15:52:37 Term 2 : node 6 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 3 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 0
+2025/01/14 15:52:37 Term 2 : node 3 back to follower
+2025/01/14 15:52:37 Term 2 : node 6 back to follower
+2025/01/14 15:52:37 Term 2 : node 2 back to follower
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 3
+2025/01/14 15:52:37 Term 2 : node 5 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 5 back to follower
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 6
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 2
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 5
+2025/01/14 15:52:37 Term 2 : node 1 broadcastHeartbeat
+  ... Passed --   7.3  7  173   39962    0
+2025/01/14 15:52:37 Term 2 : node 3 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 0 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 3 back to follower
+2025/01/14 15:52:37 Term 2 : node 0 back to follower
+2025/01/14 15:52:37 Term 2 : node 4 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 1 : node 4 back to follower
+2025/01/14 15:52:37 Term 2 : node 2 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 2 back to follower
+PASS
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 0
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 4
+2025/01/14 15:52:37 Term 2 : node 5 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 3
+2025/01/14 15:52:37 Term 2 : node 5 back to follower
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 2
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 5
+2025/01/14 15:52:37 Term 2 : node 6 received AppendEntries from node 1
+2025/01/14 15:52:37 Term 2 : node 6 back to follower
+2025/01/14 15:52:37 Term 2 : node 1 received match from node 6
+ok  	6.5840/raft	18.493s

@@ -71,8 +71,8 @@ type RequestVoteArgs struct {
 	// Your data here (3A, 3B).
 	Term         int // 候选人的当前任期号
 	CandidateId  int // 候选人的ID
-	LastLogIndex int // 候选人最后一个日志的索引
-	LastLogTerm  int // 候选人最后一个日志的任期号
+	LastLogIndex int // 候选人最后一个日志的索引(不一定已提交)
+	LastLogTerm  int // 候选人最后一个日志的任期号(不一定已提交)
 }
 
 // example RequestVote RPC reply structure.
@@ -88,8 +88,8 @@ type AppendEntriesArgs struct {
 	// Your data here (3A, 3B).
 	Term         int        // leader的当前任期号
 	LeaderId     int        // leader的ID,让follower重定位给clients
-	PrevLogIndex int        // 最新日志条目之前的日志条目的索引
-	PrevLogTerm  int        // 最新日志条目之前的日志条目的任期号
+	PrevLogIndex int        // Leader要追加的日志条目之前的日志条目的索引,失败则递减
+	PrevLogTerm  int        // Leader要追加的日志条目之前的日志条目的任期号
 	Entries      []LogEntry // 要追加的日志条目,空则为心跳
 	LeaderCommit int        // leader已知的已提交日志的最大索引
 }
@@ -226,12 +226,12 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	reply.Term = rf.currentTerm
 	reply.Success = false
 
-	// 1.如果领导者的任期号小于当前任期号，拒绝请求
+	// 如果领导者的任期号小于当前任期号，拒绝请求
 	if args.Term < rf.currentTerm {
 		return
 	}
 
-	// candidate收到leader的心跳 或者 follower收到leader的心跳
+	// candidate/follower收到leader的心跳, 回归(持续)follower状态
 	if args.Term >= rf.currentTerm {
 		rf.backToFollower(reply.Term)
 	}
@@ -240,7 +240,6 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	if len(rf.log) > args.PrevLogIndex && rf.log[args.PrevLogIndex].Term == args.PrevLogTerm {
 		reply.Success = true
 		rf.resetTimer()
-		return
 	}
 }
 
@@ -328,12 +327,13 @@ func (rf *Raft) ticker() {
 		// Check if a leader election should be started.
 		rf.mu.Lock()
 		if rf.state == LEADER {
+			// 1秒内不能超过10次心跳,所以每次心跳间隔应大于100ms
 			ms := 100 + (rand.Int63() % 50)
 			time.Sleep(time.Duration(ms) * time.Millisecond)
 			rf.broadcastHeartbeat()
 		} else if time.Since(rf.lastHeartbeatTime) > rf.electionTimeout {
 			// 无论是follower还是candidate,只要超过一段时间没收到心跳,则开始下一次选举
-			// 任期加1->转换为candidate->投票给自己->并行地给发送 RequestVote RPCs 给其他所有节点
+			// 任期加1-->转换为candidate-->投票给自己-->并行发送 RequestVote RPCs 给其他所有节点
 			rf.currentTerm++
 			rf.state = CANDIDATE
 			rf.votedFor = rf.me
@@ -409,6 +409,7 @@ func (rf *Raft) broadcastRequestVote() {
 		go func(peer int) {
 			reply := &RequestVoteReply{}
 			rf.sendRequestVote(peer, args, reply)
+			// 在投票后,可能会修改rf的变量,所以此处上锁
 			rf.mu.Lock()
 			defer rf.mu.Unlock()
 			// follower的Term比当前candidate的Term大,退回follower状态
@@ -421,7 +422,9 @@ func (rf *Raft) broadcastRequestVote() {
 				if receivedVotes > len(rf.peers)/2 && rf.state != LEADER {
 					rf.state = LEADER
 					DPrintf("Term %d : node %d become leader", rf.currentTerm, rf.me)
+					// 成为领导后,立刻广播一次心跳,并初始化nextIndex
 					rf.broadcastHeartbeat()
+					rf.leaderInitializeNextIndex()
 				}
 			}
 		}(i)
@@ -436,8 +439,10 @@ func (rf *Raft) broadcastHeartbeat() {
 	}
 
 	args := &AppendEntriesArgs{
-		Term:         rf.currentTerm,
-		LeaderId:     rf.me,
+		Term:     rf.currentTerm,
+		LeaderId: rf.me,
+		// 此处的PrevLogIndex和PrevLogTerm有误,在日志部分需要修改!
+		// Entries只在心跳时为空,也需要修改!
 		PrevLogIndex: rf.getLastLogIndex(),
 		PrevLogTerm:  rf.getLastLogTerm(),
 		Entries:      nil,
@@ -454,6 +459,8 @@ func (rf *Raft) broadcastHeartbeat() {
 		go func(peer int) {
 			reply := &AppendEntriesReply{}
 			rf.sendAppendEntries(peer, args, reply)
+			rf.mu.Lock()
+			defer rf.mu.Unlock()
 			if reply.Success {
 				DPrintf("Term %d : node %d received match from node %d", rf.currentTerm, rf.me, peer)
 			}
@@ -474,20 +481,29 @@ func (rf *Raft) getLastLogTerm() int {
 
 // 重置心跳定时器
 func (rf *Raft) resetTimer() {
+	// 需要在5秒内选举出新leader,所以此处的electionTimeout可以较大
 	rf.electionTimeout = time.Duration(2000+rand.Int63()%1000) * time.Millisecond
 	rf.lastHeartbeatTime = time.Now()
 }
 
-// 检查检查候选者的日志是否至少和接收者的日志一样新
+// 检查候选者的日志是否至少和接收者的日志一样新
 func (rf *Raft) isCandidateLogUpToDate(args *RequestVoteArgs) bool {
 	lastLogIndex := rf.getLastLogIndex()
 	lastLogTerm := rf.getLastLogTerm()
 	return args.LastLogTerm > lastLogTerm || (args.LastLogTerm == lastLogTerm && args.LastLogIndex >= lastLogIndex)
 }
 
-func (rf *Raft) backToFollower(newTerm int) {
-	rf.currentTerm = newTerm
+// candidate或者leader转为follower,会重置votedFor和选举计时器
+func (rf *Raft) backToFollower(newestTerm int) {
+	rf.currentTerm = newestTerm
 	rf.state = FOLLOWER
 	rf.votedFor = -1
 	rf.resetTimer()
+	DPrintf("Term %d : node %d back to follower", rf.currentTerm, rf.me)
+}
+
+func (rf *Raft) leaderInitializeNextIndex() {
+	for i := range rf.peers {
+		rf.nextIndex[i] = rf.getLastLogIndex() + 1
+	}
 }
